@@ -1,19 +1,22 @@
 <head>
-
     <meta charset="utf-8"/>
     <meta content="initial-scale=1, width=device-width" name="viewport"/>
 
     <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- <link href="{# {{ url_for('static', filename='styles.css') }} #}" rel="stylesheet"/> -->
+    
+    <!-- custom css -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet"/>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <!-- datatables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-
+    
+    <!-- custom js-->
+    <script type="text/javascript" href="{{ url_for('static', filename='js/custom.js') }}"></script>
+    
     <title>Booking App: {% block title %}{% endblock %}</title>
-
 </head>

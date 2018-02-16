@@ -1,6 +1,9 @@
-from flask import render_template, flash
+from flask import render_template, session, url_for, flash
 from . import main
+
+#session['user_id'] = 1
 
 @main.route("/")
 def index():
-    return render_template("index_test.html")
+    session['user_id'] = 1
+    return render_template("index.html")
