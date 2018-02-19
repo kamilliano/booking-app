@@ -4,8 +4,13 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    #secret key for session signing, use following to generate new 
+    # >>> import os
+    # >>> os.urandom(24)
     SECRET_KEY = "\x94'#\xe8\xdc\xd1I\x8f\x0b+\x053\xd2=Ef\xf4d\xbd&\xcb\xf11\xac"
     DEBUG = False
+    RECAPTCHA_PUBLIC_KEY = '6LevTEcUAAAAAHGIOVvam9tMbwslKfVHVB6lqop2'
+    RECAPTCHA_PRIVATE_KEY = '6LevTEcUAAAAAEFY2PKoL7Ndo5M74BPDThTZ7EM-'
 
 class DevConfig(Config):
     DEBUG = True

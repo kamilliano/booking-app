@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Acme -- Login
+{% endblock %}
+
+{% block main %}
+    <section class="container">
+        <h1 style="clear:both"> Login to Acme Ltd.</h1>
+        <form action="" method="post"> 
+            {{ form.hidden_tag() }}
+            <table>
+                {{ render_field(form.username, size=75) }}
+                {{ render_field(form.password, size=75) }}
+                {{ render_field(form.remember_me, style="margin-left:20px") }}
+                {{ render_field(form.recaptcha, size=75) }}
+                {{ render_field(form.submit) }}
+                
+            </table>
+        </form>
+    </section>
+{% endblock %}
