@@ -19,7 +19,7 @@
                         
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Submit an Issue</a></li>
+                        <li><a href="#">Submit an Issue</a></li>
                         <li><a href="#">Log Out</a></li>
                     </ul>
                 {% else %}
@@ -30,11 +30,18 @@
             </div>
         </div>
     </nav>
-    {% if get_flashed_messages() %}
-        <header>
-            <div class="alert alert-info" role="alert">
-                {{ get_flashed_messages() | join(" ") }}
-            </div>
-        </header>
-    {% endif %}
+    <!-- show flashed messages if defined --> 
+    <article class="flashes">
+        {% with messages = get_flashed_messages() %}
+          {% if (messages is defined) and messages %}
+            {% if messages %}
+                <ul class="alert alert-info" role="alert">
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+          {% endif %}
+        {% endwith %}
+    </article>
 </div>

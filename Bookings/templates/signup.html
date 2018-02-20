@@ -5,22 +5,18 @@
 Acme -- Signup
 {% endblock %}
 
-
-{% block content %}
-    <section class="container">
+{% block main %}
+    <section class="container signup-form">
         <h1 style="clear:both">Signup for Acme Ltd</h1>
         <form action="" method="post">
-            {{form.hidden_tag()}}
+            {{ form.hidden_tag() }}
             <table>
                 {{ render_field(form.username, size=75) }}
                 {{ render_field(form.email, size=75) }}
                 {{ render_field(form.password, size=75) }}
                 {{ render_field(form.password2, size=75) }}
-                {{ form.recaptcha }}
-                <tr class="submit">
-                    <td></td>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
+                {{ render_field(form.submit) }}
+                
             </table>
         </form>
     </section>
