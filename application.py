@@ -4,13 +4,24 @@ from Bookings import create_app, db
 import os
 import click
 from flask_migrate import Migrate, MigrateCommand
-from models import User
+
 from sqlalchemy import exc
 from flask_migrate import Migrate, MigrateCommand
 app = create_app(os.getenv('BOOKINGS_ENV') or 'dev')
 
-
+from models import User
 migrate = Migrate(app, db)
+
+
+
+@app.cli.command()
+def create_databases():
+
+    #TODO: ASK ON STACK OVERFLOW
+    #db.create_all()
+
+    print("DB created.")
+
 
 @app.cli.command()
 def insert_test_users():

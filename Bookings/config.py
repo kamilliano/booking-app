@@ -1,6 +1,4 @@
-import os
 
-#basedir = os.path.abspath(os.path.dirname(__file__))
 
 def _db_string_builder(username, password,conn, db):
     return 'mysql://' + username + ':' + password + '@' + conn + '/' + db
