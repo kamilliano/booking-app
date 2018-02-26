@@ -4,9 +4,10 @@ from Bookings import create_app, db
 import os
 import click
 from flask_migrate import Migrate, MigrateCommand
-
-from sqlalchemy import exc
+from Bookings.config import Config
 from flask_migrate import Migrate, MigrateCommand
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 app = create_app(os.getenv('BOOKINGS_ENV') or 'dev')
 
 from models import User
@@ -15,12 +16,32 @@ migrate = Migrate(app, db)
 
 
 @app.cli.command()
-def create_databases():
+@click.option('--env_db', required=True)
+def create_databases(env_db):
+    """Create databases for the application based on environment
 
-    #TODO: ASK ON STACK OVERFLOW
-    #db.create_all()
+        Args: 
+            ["dev_db", "test_db", "prod_db"]
+    """
 
-    print("DB created.")
+    try:
+        conn = Config.MYSQL_CONN
+        db_name = Config.dbs[env_db]
+        db = SQLAlchemy()
+        engine = db.create_engine(conn) # connect to server
+        engine.execute("CREATE DATABASE " + db_name) #create db
+        engine.execute("USE " + db_name ) # select new db
+        print("DB created {}".format(db_name))
+    except exc.SQLAlchemyError as e:
+        click.echo("error has occured loading data to sql storage: " + str(e))
+    except:
+        print('Usage: Flask --env_db [env_db]')
+        print('Possible "env_db" types: ["dev_db", "test_db", "prod_db"]')
+
+    
+
+
+   
 
 
 @app.cli.command()
@@ -49,6 +70,7 @@ def insert_test_users():
         click.echo("error has occured loading data to sql storage: " + str(e))
     #only commit if no errors occured - TODO investigate
     db.session.commit()
+
 
 app.cli.command()
 @click.option('--response', prompt=('Are you sure you want '
